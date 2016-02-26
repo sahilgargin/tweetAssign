@@ -7,8 +7,8 @@ class Users {
 		//Database configuration
 		$dbServer = 'localhost'; //Define database server host
 		$dbUsername = 'root'; //Define database username
-		$dbPassword = '123456'; //Define database password
-		$dbName = 'tweet'; //Define database name
+		$dbPassword = 'foodiyerocks'; //Define database password
+		$dbName = 'newDd'; //Define database name
 		
 		//Connect databse
 		$con = mysqli_connect($dbServer,$dbUsername,$dbPassword,$dbName);
@@ -41,16 +41,17 @@ class Users {
 
 	function followInsert($oauth_uid, $nameFollow, $postedFollow, $tweetFollow, $idFollow, $screenNameFollow)
 	{
+		$nameFollow = mysqli_real_escape_string($this->connect, $nameFollow);
+		$tweetFollow = mysqli_real_escape_string($this->connect,json_encode($tweetFollow));
 		$postedFollow = date("Y-m-d H:i:s", strtotime($postedFollow));
-		$tweetFollow = mysql_real_escape_string(json_encode($tweetFollow));
 		$insert = mysqli_query($this->connect,"Select * from followers where id_followers = '".$idFollow."'") or die(mysqli_error($this->connect));
 		if( mysqli_num_rows($insert) > 0) 
 		{
-    		mysqli_query($this->connect,"UPDATE followers SET modified='".date('Y-m-d H:i:s')."', oauth_uid = '".$oauth_uid."',name_followers = '".mysql_real_escape_string($nameFollow)."', posted_followers = '".$postedFollow."', tweet_followers = '".$tweetFollow."', screen_followers = '".$screenNameFollow."' where id_followers='".$idFollow."'");
+    		mysqli_query($this->connect,"UPDATE followers SET modified='".date('Y-m-d H:i:s')."', oauth_uid = '".$oauth_uid."',name_followers = '".$nameFollow."', posted_followers = '".$postedFollow."', tweet_followers = '".$tweetFollow."', screen_followers = '".$screenNameFollow."' where id_followers='".$idFollow."'");
 		}
 		else
 		{
-		    mysqli_query($this->connect,"INSERT  INTO followers SET created='".date('Y-m-d H:i:s')."',modified='".date('Y-m-d H:i:s')."', oauth_uid = '".$oauth_uid."',name_followers = '".mysql_real_escape_string($nameFollow)."', posted_followers = '".$postedFollow."', tweet_followers = '".$tweetFollow."', id_followers = '".$idFollow."', screen_followers = '".$screenNameFollow."'");
+		    mysqli_query($this->connect,"INSERT  INTO followers SET created='".date('Y-m-d H:i:s')."',modified='".date('Y-m-d H:i:s')."', oauth_uid = '".$oauth_uid."',name_followers = '".$nameFollow."', posted_followers = '".$postedFollow."', tweet_followers = '".$tweetFollow."', id_followers = '".$idFollow."', screen_followers = '".$screenNameFollow."'");
 		}
 	}
 }

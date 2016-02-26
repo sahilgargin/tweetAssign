@@ -108,7 +108,7 @@ include_once("includes/functions.php");
 			
 	}else{
 		//Display login button
-		echo '<a href="process.php"><img src="images/sign-in-with-twitter.png" width="151" height="24" border="0" /></a>';
+		echo '<center><a class="login" href="process.php"><img src="images/sign-in-with-twitter.png" width="151" height="24" border="0" /></a><center>';
 	}
 ?>  
 </body>

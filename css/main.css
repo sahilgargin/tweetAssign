@@ -97,6 +97,7 @@ body
     margin-top: 0px;
     color: #2d4365;
     letter-spacing: 1px;
+    background: white;
     font-family: calibri, helvetica, arial; 
     }
     .nameFol
@@ -187,3 +188,10 @@ body
     background: #2d4365;
     padding: 6px;
     text-decoration: underline;
+}
+
+.login
+{
+    position: relative;
+    top: 68px;
+}

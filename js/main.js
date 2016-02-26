@@ -107,7 +107,7 @@ $(document).ready(function(){
                 innerCon = innerCon+"<div class='fs-icon' title='Expand/Close'></div></div></div>";
                 document.getElementById("ninja-slider").innerHTML = innerCon;
                 nslider.init();
-
+               
 
 
             }
