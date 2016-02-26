@@ -1,6 +1,12 @@
 /* Visit http://www.menucool.com/responsive-slider for instructions */
-
+.wrap-up
+{
+    position: relative;
+    top: 40px;
+    background: #2d4365;
+}
 #ninja-slider {
+   
     width:100%;
     max-width:900px;
     /*min-width:375px;

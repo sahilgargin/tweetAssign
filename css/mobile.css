@@ -1,0 +1,14 @@
+
+.SearchB
+{
+    position: relative;
+    height: 29px;
+    width: 162px;
+    background: rgb(45, 67, 101);
+    top: 9px;
+    margin-left: 48px;
+    color: white;
+    letter-spacing: 1px;
+    font-family: calibri, helvetica, arial;
+    font-size: 1.2em;
+}
