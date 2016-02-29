@@ -29,13 +29,14 @@ $(document).ready(function(){
     
     function loadFromkw(keyword)
     {
+        twId = document.getElementById("twitId").innerHTML;
         document.getElementById("autoFill").innerHTML = "";
         
             $.ajax(
 	       {		
             type: "GET",
-            url: "api/userAutoFill.php?kw="+keyword,
-            dataType: "json",
+            url: "api/userAutoFill.php?kw="+keyword+"&tw="+twId,
+            dataType: "json",   
             success: function (response)
             {
                 //console.log(response);
@@ -96,16 +97,25 @@ $(document).ready(function(){
                 if(response.users)
                 {
                     //console.log(response.users.row[0].tweets);
-                    
+                    if(response.users.row[0].tweets != 'undefined')
+                    {
                         for (j=0; j<response.users.row[0].tweets.length; j++)
                         {
                             innerCon = innerCon+"<li><div class='content'><img src='' /><h3>"+response.users.row[0].tweets[j].text+"</h3><p>"+response.users.row[0].tweets[j].created_at+"</p></div></li>";
                             
-                        }
+                        } 
+                        document.getElementById("whoTweet").innerHTML = "Tweets by "+response.users.row[0].name+":";  
+                    }
+                    else 
+                    {
+                         document.getElementById("whoTweet").innerHTML = "No tweets by "+response.users.row[0].name; 
+                    }
                     
                 }
                 innerCon = innerCon+"<div class='fs-icon' title='Expand/Close'></div></div></div>";
                 document.getElementById("ninja-slider").innerHTML = innerCon;
+                scrollToElement('.tweet_box', 100);
+                
                 nslider.init();
                
 
@@ -115,3 +125,10 @@ $(document).ready(function(){
        
         return false;
     }
+
+    var scrollToElement = function(el, ms){
+    var speed = (ms) ? ms : 600;
+    $('html,body').animate({
+        scrollTop: $(el).offset().top
+    }, speed);
+}
