@@ -20,6 +20,7 @@ class Users {
 	}
 	
 	function checkUser($oauth_provider,$oauth_uid,$username,$fname,$lname,$locale,$oauth_token,$oauth_secret,$profile_image_url){
+		
 		$prevQuery = mysqli_query($this->connect,"SELECT * FROM $this->tableName WHERE oauth_provider = '".$oauth_provider."' AND oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
 		if(mysqli_num_rows($prevQuery) > 0){
 			$update = mysqli_query($this->connect,"UPDATE $this->tableName SET oauth_token = '".$oauth_token."', oauth_secret = '".$oauth_secret."', modified = '".date("Y-m-d H:i:s")."' WHERE oauth_provider = '".$oauth_provider."' AND oauth_uid = '".$oauth_uid."'") or die(mysqli_error($this->connect));
@@ -35,14 +36,25 @@ class Users {
 	function logInsert($endpoint,$oauth_uid, $reqArray, $resArray)
 	{
 		$reqArray = json_encode ($reqArray);
-		$resArray = json_encode ($resArray);
+		$resArray = mysqli_real_escape_string($this->connect,json_encode($resArray));
 		$insert = mysqli_query($this->connect,"INSERT IGNORE INTO call_log SET resp_array = '".$resArray."',user_id = '".$oauth_uid."', req_array = '".$reqArray."', endpoint = '".$endpoint."'") or die(mysqli_error($this->connect));
+		if( mysqli_num_rows($insert) > 0) 
+		{
+    		mysqli_query($this->connect,"INSERT IGNORE INTO call_log SET resp_array = '".$resArray."',user_id = '".$oauth_uid."', req_array = '".$reqArray."', endpoint = '".$endpoint."'") or die(mysqli_error($this->connect));
+		}
+		else
+		{
+		    mysqli_query($this->connect,"update call_log SET resp_array = '".$resArray."',user_id = '".$oauth_uid."', req_array = '".$reqArray."', endpoint = '".$endpoint."' where user_id = '".$oauth_uid."'") or die(mysqli_error($this->connect));
+		}
+		
 	}
 
 	function followInsert($oauth_uid, $nameFollow, $postedFollow, $tweetFollow, $idFollow, $screenNameFollow)
 	{
 		$nameFollow = mysqli_real_escape_string($this->connect, $nameFollow);
 		$tweetFollow = mysqli_real_escape_string($this->connect,json_encode($tweetFollow));
+		$screenNameFollow = mysqli_real_escape_string($this->connect,$screenNameFollow);
+
 		$postedFollow = date("Y-m-d H:i:s", strtotime($postedFollow));
 		$insert = mysqli_query($this->connect,"Select * from followers where id_followers = '".$idFollow."'") or die(mysqli_error($this->connect));
 		if( mysqli_num_rows($insert) > 0) 

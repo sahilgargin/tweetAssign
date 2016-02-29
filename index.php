@@ -94,9 +94,10 @@ include_once("includes/functions.php");
 		echo "";
 		foreach($foll_tweets->users  as $foll_tweet)
 		{
+			$follo_tweets = $connection->get('statuses/user_timeline', array('user_id'=>$foll_tweet->id,'screen_name' => $foll_tweet->screen_name, 'count' => 10));
 			$go->followInsert($twitter_id, $foll_tweet->name, $foll_tweet->created_at, $follo_tweets, $foll_tweet->id, $foll_tweet->screen_name);
 			echo '<li><img src="'.$foll_tweet->profile_image_url_https.'"/><br />-<i>'.$foll_tweet->name.'</i>-<i>'.$foll_tweet->created_at.'</i></li>';
-			$follo_tweets = $connection->get('statuses/user_timeline', array('user_id'=>$foll_tweet->id,'screen_name' => $foll_tweet->screen_name, 'count' => 10));
+			
 			/*foreach ($follo_tweets  as $follo_tweet) 
 			{
 				echo '<li>'.$follo_tweet->text.' <br />-<i>'.$follo_tweet->created_at.'</i></li><br/><br/>';
