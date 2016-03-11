@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-   
+   $(".loadinger").css("display", "none");
     $("#sbox").keydown(function(){
         
         if ($(this).val().length >= 1)
@@ -64,6 +64,8 @@ $(document).ready(function(){
     function getTweetData(id)
     {
         
+        
+        $(".loadinger").css("display", "block");
             $.ajax(
            {        
             type: "GET",
@@ -122,7 +124,7 @@ $(document).ready(function(){
 
             }
         });
-       
+       $(".loadinger").css("display", "none");
         return false;
     }
 
