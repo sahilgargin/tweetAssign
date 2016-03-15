@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <url>
+        <loc>http://www.sahilgarg.in</loc>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/loading.gif</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/icons/menu-media.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/portfolio/1.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/portfolio/2.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/portfolio/3.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/portfolio/4.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/portfolio/5.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/portfolio/6.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/portfolio/7.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>http://www.sahilgarg.inimg/portfolio/8.png</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>http://www.sahilgarg.in/mail.php</loc>
+    </url>
+</urlset>
